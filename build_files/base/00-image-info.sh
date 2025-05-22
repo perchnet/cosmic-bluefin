@@ -4,7 +4,7 @@ echo "::group:: ===$(basename "$0")==="
 
 set -ouex pipefail
 
-IMAGE_PRETTY_NAME="Bluefin"
+IMAGE_PRETTY_NAME="Cosmic-Bluefin"
 IMAGE_LIKE="fedora"
 HOME_URL="https://projectbluefin.io"
 DOCUMENTATION_URL="https://docs.projectbluefin.io"

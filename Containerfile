@@ -1,4 +1,4 @@
-ARG BASE_IMAGE_NAME="silverblue"
+ARG BASE_IMAGE_NAME="cosmic"
 ARG FEDORA_MAJOR_VERSION="41"
 ARG SOURCE_IMAGE="${BASE_IMAGE_NAME}-main"
 ARG BASE_IMAGE="ghcr.io/ublue-os/${SOURCE_IMAGE}"
@@ -10,13 +10,13 @@ COPY /iso_files /iso_files
 COPY /just /just
 COPY packages.json /
 
-## bluefin image section
+## cosmic-bluefin image section
 FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION} AS base
 
 ARG AKMODS_FLAVOR="coreos-stable"
-ARG BASE_IMAGE_NAME="silverblue"
+ARG BASE_IMAGE_NAME="cosmic"
 ARG FEDORA_MAJOR_VERSION="40"
-ARG IMAGE_NAME="bluefin"
+ARG IMAGE_NAME="cosmic-bluefin"
 ARG IMAGE_VENDOR="ublue-os"
 ARG KERNEL="6.10.10-200.fc40.x86_64"
 ARG SHA_HEAD_SHORT="dedbeef"
@@ -29,13 +29,13 @@ RUN --mount=type=cache,dst=/var/cache/libdnf5 \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     /ctx/build_files/shared/build-base.sh
 
-## bluefin-dx developer edition image section
+## cosmic-bluefin-dx developer edition image section
 FROM base AS dx
 
 ARG AKMODS_FLAVOR="coreos-stable"
-ARG BASE_IMAGE_NAME="silverblue"
+ARG BASE_IMAGE_NAME="cosmic"
 ARG FEDORA_MAJOR_VERSION="41"
-ARG IMAGE_NAME="bluefin-dx"
+ARG IMAGE_NAME="cosmic-bluefin-dx"
 ARG IMAGE_VENDOR="ublue-os"
 ARG KERNEL="6.10.10-200.fc40.x86_64"
 ARG SHA_HEAD_SHORT="dedbeef"

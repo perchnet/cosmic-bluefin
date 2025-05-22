@@ -12,14 +12,14 @@ IMAGE_INFO="$(cat /usr/share/ublue-os/image-info.json)"
 IMAGE_TAG="$(jq -c -r '."image-tag"' <<< $IMAGE_INFO)"
 IMAGE_FLAVOR="$(jq -c -r '."image-flavor"' <<< $IMAGE_INFO)"
 
-OUTPUT_NAME="ghcr.io/ublue-os/bluefin"
+OUTPUT_NAME="ghcr.io/perchnet/cosmic-bluefin"
 if [ "$IMAGE_FLAVOR" != "main" ] ; then
   OUTPUT_NAME="${OUTPUT_NAME}-${IMAGE_FLAVOR}"
 fi
 KARGS=""
 if [ "$IMAGE_FLAVOR" =~ nvidia ] ; then
   KARGS='bootc_kargs = ["rd.driver.blacklist=nouveau", "modprobe.blacklist=nouveau", "nvidia-drm.modeset=1"]'
-fi 
+fi
 
 tee /etc/readymade.toml <<EOF
 [install]
@@ -99,7 +99,7 @@ chmod +x /usr/share/readymade/postinstall.d/99-mok.sh
 # Entirely remove everythign from the livesys configuration for GNOME
 # This file isnt necessary for us considering how much setting up for
 # Anaconda this does. Instead just inline whatever we actually need.
-tee /usr/libexec/livesys/sessions.d/livesys-gnome <<"EOF" 
+tee /usr/libexec/livesys/sessions.d/livesys-gnome <<"EOF"
 #!/bin/sh
 
 if [ ! -d /var/lib/gnome-initial-setup ]; then
